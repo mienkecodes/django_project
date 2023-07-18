@@ -9,11 +9,11 @@
         <meta name="author" content="Mienke Dreyer">
         <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}{% endblock stylesheets %}
     </head>
 
     <body>
-        <header>
+        <header >
             <div id="header-text">
                 <a id="header-link" href="{% url 'news:index' %}">
                     <h1>She {Codes} News</h1>
@@ -23,6 +23,6 @@
             {% include './nav.html' %}
         </header>
 
-        {% block content %}{% endblock %}
+        {% block content %} {% endblock content %}
     </body>
 </html>

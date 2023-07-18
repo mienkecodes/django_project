@@ -2,18 +2,17 @@
 
 body {
     background-color: rgb(181, 161, 161);
+    padding: 10px;
 }
 
 header {
+    background: url(http://www.getuwired.com/devtest/Death_to_stock_photography_Vibrant.jpg);
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 0px solid #000;
-    background-image: url(https://shecodes.com.au/wp-content/uploads/2021/11/SC_ODE-Mar-1.-_DZ63945_HighRes-%C2%A9JoshFernandes20211-1024x681.jpg);
-    
     height: 300px;
     padding: 40px;
-    
 }
 
 #header-text {
@@ -53,15 +52,21 @@ h3 {
     margin: 0;
 }
 
+h4 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+
 
 a {
     margin: 2px;
     text-decoration: none;
     color: #000;
-    font-size: 2rem;
-    padding: 8px;
-    background-color: white;
-    border-radius: 10%;
+    font-size: 1rem;
+    /* padding: 8px; */
+    /* background-color: white; */
+    /* border-radius: 10%; */
 }
 
 a, p {

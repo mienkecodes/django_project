@@ -1,5 +1,8 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block stylesheets %}   
+<link rel="stylesheet" type="text/css" href="{% static 'news/styles.css'%}">
+{% endblock %}
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}

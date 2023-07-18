@@ -1,9 +1,15 @@
+
+{% load static %}
+{% block content %}
+
 <div class="story-card" id="story-card-{{ position }}">
     <a href="{% url 'news:story' story.id %}">
-        {% if position < 5 %}
-            <img src="{{story.image_url}}">
+        
+        {% if story.image is None %}
+        <img src="https://www.gaiaresources.com.au/wp-content/uploads/2020/02/SheCodes-cupcakes-narrow.jpg">
         {% else %}
-            <img src="{{story.image_url}}">
+        <img src="{{story.image_url}}">
+
         {% endif %}
         <div class="story-card-text">
             <h3>{{ story.title }}</h3>
@@ -12,3 +18,4 @@
         </div>
     </a>
 </div>
+{% endblock %}
