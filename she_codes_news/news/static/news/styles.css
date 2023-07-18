@@ -17,6 +17,7 @@
     gap: 1px 1px;
     grid-template-areas: "left-1 right-1" "left-1 right-2" "left-1 right-3";
     max-height: 500px;
+    padding: 40px;
 }
 
 #story-card-1 {
