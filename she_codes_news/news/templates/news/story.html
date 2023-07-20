@@ -1,6 +1,6 @@
 <!-- news/templates/news/story.html -->
 
-<!-- {% extends "base.html" %} -->
+{% extends "base.html" %}
 {% load static %}
 {% block stylesheets %}
 <link rel="stylesheet" type="text/css" href="">
@@ -16,5 +16,20 @@
         {{ story.content|linebreaks }}
     </div>
 </div>
+<!-- Display existing comments -->
+<h2>Comments:</h2>
+<ul>
+    {% for comment in news_story.comment_set.all %}
+        <li>{{ comment.author.username }}: {{ comment.comment }}</li>
+    {% endfor %}
+</ul>
+
+<!-- Comment creation form -->
+<h2>Add a comment:</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Comment</button>
+</form>
 
 {% endblock %}

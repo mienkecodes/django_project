@@ -12,10 +12,30 @@
     <img src="url/background-image: url(https://shecodes.com.au/wp-content/uploads/2021/11/SC_ODE-Mar-1.-_DZ63945_HighRes-%C2%A9JoshFernandes20211-1024x681.jpg);" id="hero-image" height="10px">
 </section>
 
-<br>
-<button><a href="{% url 'news:newStory' %}">Write New Story</a></button>
-<br>
 
+<!-- Add the search form to the template -->
+<form method="GET" action="{% url 'news:index' %}" class="search-form">
+    <input type="text" name="q" placeholder="Search by author or tag">
+    <button type="submit">Search</button>
+</form>
+
+<!-- Display the search results below the search form -->
+{% if all_stories %}
+    {% if request.GET.q %}
+        <ul>
+        {% for story in all_stories %}
+            <li><a href="{% url 'news:story' story.pk %}">{{ story.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Enter a search by author name or relevant tags.</p>
+    {% endif %}
+
+{% else %}
+    <p>No stories found.</p>
+{% endif %}
+
+<br>
 
 <h2>Latest News</h2>
 
@@ -30,8 +50,9 @@
             <p>No stories are available.</p>
         {% endif %}
     </div>
-
-
+<br>
+    <h2>All stories</h2>
+<br>
     <div id="all-stories">
         {% if latest_stories %}
             {% for story in all_stories %}
