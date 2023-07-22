@@ -8,6 +8,10 @@ from taggit.models import Tag
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import NewsStory, Comment
 from .forms import CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView, ListView
+from django.contrib.auth.models import User
+
 
 
 class IndexView(generic.ListView):
@@ -20,7 +24,7 @@ class IndexView(generic.ListView):
         query = self.request.GET.get('q')  # Get the search query from the URL parameters
         if query:
             # If a search query is provided, filter the news stories by author or tags
-            return NewsStory.objects.filter(Q(author__username__icontains=query) | Q(tags__name__icontains=query))
+            return NewsStory.objects.filter(Q(author__username__icontains=query) | Q(tags__name__icontains=query) | Q(content__icontains=query))
         else:
             return NewsStory.objects.all()
         # return NewsStory.objects.all()
@@ -96,7 +100,23 @@ class AddStoryView(generic.CreateView):
 
     # good place to add to project - take to other place, view of what you've written?
 
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = Profile
+    template_name = 'news/profile.html'
+    context_object_name = 'profile'
 
+    def get_object(self, queryset=None):
+        # Use the current logged-in user's profile
+        return self.request.user.profile
+
+class UserArticlesListView(LoginRequiredMixin, ListView):
+    model = NewsStory
+    template_name = 'news/user_articles.html'
+    context_object_name = 'articles'
+
+    def get_queryset(self):
+        user = self.request.user
+        return NewsStory.objects.filter(author=user)
 
 
 # use the print function to see what you are doing and help you debug
